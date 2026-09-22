@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#173f7a">
+  <title>VTCOM - Follow 3 kênh nhận quà</title>
+  <style>
+    :root{--blue:#1d4585;--navy:#102c59;--cyan:#17bdea;--yellow:#ffd400;--green:#10b981;--ink:#14213d;--muted:#667085}
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;font-family:Arial,"Segoe UI",sans-serif;color:var(--ink)}
+    body{min-height:100svh;background:linear-gradient(145deg,#0d2854 0%,#1d4585 47%,#13aee0 100%);padding:max(14px,env(safe-area-inset-top)) 14px max(18px,env(safe-area-inset-bottom))}
+    body:before,body:after{content:"";position:fixed;border-radius:50%;filter:blur(3px);pointer-events:none}
+    body:before{width:220px;height:220px;right:-95px;top:-80px;background:rgba(255,212,0,.18)}
+    body:after{width:260px;height:260px;left:-130px;bottom:-90px;background:rgba(33,213,238,.2)}
+    .card{position:relative;z-index:1;width:min(520px,100%);margin:auto;background:#fff;border-radius:26px;overflow:hidden;box-shadow:0 24px 65px rgba(0,12,37,.34)}
+    .hero{padding:22px 20px 18px;text-align:center;background:linear-gradient(180deg,#f8fcff,#fff)}
+    .logo{display:inline-flex;align-items:center;gap:9px;color:var(--blue);font-size:28px;font-weight:950;letter-spacing:-1px}
+    .logo-mark{display:grid;place-items:center;width:44px;height:28px;background:var(--yellow);transform:skew(-10deg);font-size:16px}
+    .eyebrow{margin:15px 0 6px;color:#1889c2;font-size:12px;font-weight:900;letter-spacing:.16em}
+    h1{margin:0;color:var(--navy);font-size:clamp(27px,8vw,38px);line-height:1.03;letter-spacing:-1px}
+    .lead{margin:10px auto 0;max-width:390px;color:var(--muted);font-size:14px;line-height:1.45}
+    .steps{padding:4px 16px 18px;display:grid;gap:11px}
+    .task{display:grid;grid-template-columns:50px minmax(0,1fr) auto;align-items:center;gap:11px;padding:12px;border:2px solid #e7edf5;border-radius:17px;text-decoration:none;color:var(--ink);background:#fff;box-shadow:0 5px 15px rgba(29,69,133,.06);transition:.18s ease;-webkit-tap-highlight-color:transparent}
+    .task:active{transform:scale(.985)}
+    .task .icon{display:grid;place-items:center;width:48px;height:48px;border-radius:14px;color:#fff;font-size:25px;font-weight:900}
+    .facebook .icon{background:#1877f2}.zalo .icon{background:#0068ff}.tiktok .icon{background:#111;text-shadow:-2px 0 #25f4ee,2px 0 #fe2c55}
+    .task b,.task small{display:block}.task b{font-size:15px}.task small{margin-top:4px;color:var(--muted);font-size:11px}
+    .status{font-style:normal;font-size:10px;font-weight:900;color:#df3143;white-space:nowrap}
+    .task.done{border-color:var(--green);background:#effcf7}.task.done .status{color:#07845b}
+    .hint{margin:1px 6px 0;color:var(--muted);font-size:12px;line-height:1.45;text-align:center}
+    .confirm{width:100%;border:0;border-radius:15px;padding:15px 14px;background:linear-gradient(135deg,var(--cyan),#3975ed);color:#fff;font:900 16px Arial;box-shadow:0 10px 22px rgba(38,126,218,.25);cursor:pointer}
+    .confirm:disabled{background:#d7dee8;color:#8c99aa;box-shadow:none;cursor:not-allowed}
+    .success{display:none;margin:4px 16px 20px;padding:22px 15px;border:2px solid var(--green);border-radius:18px;background:#edfff7;text-align:center;color:#087653}
+    .success.show{display:block}
+    .success .check{font-size:42px}.success h2{margin:5px 0;font-size:23px}.success p{margin:5px 0;color:#4c7568;font-size:13px}
+    .success strong{display:block;margin-top:12px;color:var(--navy);font-size:20px}
+    .footer{padding:14px 18px;background:#14243f;color:#dbeafe;text-align:center;font-size:11px}
+    .footer b{color:#fff}
+    @media(max-width:370px){.hero{padding-left:14px;padding-right:14px}.steps{padding-left:10px;padding-right:10px}.task{grid-template-columns:45px minmax(0,1fr) auto;padding:10px}.task .icon{width:43px;height:43px}.task b{font-size:14px}.status{font-size:9px}}
+  </style>
+</head>
+<body>
+  <main class="card">
+    <section class="hero">
+      <div class="logo"><span class="logo-mark">VT</span>VTCOM</div>
+      <div class="eyebrow">HOÀN THÀNH NHIỆM VỤ</div>
+      <h1>FOLLOW 3 KÊNH<br>NHẬN QUÀ TẠI BOOTH</h1>
+      <p class="lead">Bấm lần lượt từng kênh, thực hiện Follow hoặc Quan tâm, sau đó quay lại trang này để xác nhận.</p>
+    </section>
+
+    <section class="steps" id="taskList">
+      <a class="task facebook" data-task="facebook" href="https://www.facebook.com/vtcomhcm" target="_blank" rel="noopener">
+        <span class="icon">f</span><span><b>Follow Facebook VTcom</b><small>facebook.com/vtcomhcm</small></span><i class="status">CHƯA XONG</i>
+      </a>
+      <a class="task zalo" data-task="zalo" href="https://zalo.me/4132250613615916774" target="_blank" rel="noopener">
+        <span class="icon">Z</span><span><b>Quan tâm Zalo OA</b><small>VTcom Official Account</small></span><i class="status">CHƯA XONG</i>
+      </a>
+      <a class="task tiktok" data-task="tiktok" href="https://www.tiktok.com/@vtcomofficial" target="_blank" rel="noopener">
+        <span class="icon">♪</span><span><b>Follow TikTok VTcom</b><small>@vtcomofficial</small></span><i class="status">CHƯA XONG</i>
+      </a>
+      <p class="hint">Sau khi mở đủ 3 kênh, nút xác nhận bên dưới sẽ hoạt động.</p>
+      <button class="confirm" id="confirmBtn" disabled>TÔI ĐÃ HOÀN THÀNH (0/3)</button>
+    </section>
+
+    <section class="success" id="success">
+      <div class="check">✅</div>
+      <h2>ĐÃ HOÀN THÀNH!</h2>
+      <p>Hãy đưa màn hình này cho nhân viên VTCOM để nhận quà.</p>
+      <strong id="completedTime"></strong>
+    </section>
+    <footer class="footer"><b>VTCOM</b> · Công nghệ trong tầm tay bạn!</footer>
+  </main>
+
+  <script>
+    (() => {
+      const KEY='vtcom_follow_event_v1';
+      const tasks=[...document.querySelectorAll('.task')];
+      const button=document.getElementById('confirmBtn');
+      const list=document.getElementById('taskList');
+      const success=document.getElementById('success');
+      let state={};
+      try{state=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+
+      function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+      function render(){
+        tasks.forEach(item=>{
+          const done=!!state[item.dataset.task];
+          item.classList.toggle('done',done);
+          item.querySelector('.status').textContent=done?'ĐÃ MỞ ✓':'CHƯA XONG';
+        });
+        const count=tasks.filter(item=>state[item.dataset.task]).length;
+        button.disabled=count<3;
+        button.textContent=count<3?`TÔI ĐÃ HOÀN THÀNH (${count}/3)`:'XÁC NHẬN HOÀN THÀNH';
+        if(state.completed){
+          list.style.display='none';
+          success.classList.add('show');
+          document.getElementById('completedTime').textContent='Xác nhận lúc '+new Date(state.completed).toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'});
+        }
+      }
+      tasks.forEach(item=>item.addEventListener('click',()=>{state[item.dataset.task]=Date.now();save();render()}));
+      button.addEventListener('click',()=>{
+        if(tasks.every(item=>state[item.dataset.task])){
+          state.completed=Date.now();save();render();
+        }
+      });
+      render();
+    })();
+  </script>
+</body>
+</html>
