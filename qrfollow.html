@@ -28,13 +28,7 @@
     .task b,.task small{display:block}.task b{font-size:15px}.task small{margin-top:4px;color:var(--muted);font-size:11px}
     .status{font-style:normal;font-size:10px;font-weight:900;color:#df3143;white-space:nowrap}
     .task.done{border-color:var(--green);background:#effcf7}.task.done .status{color:#07845b}
-    .hint{margin:1px 6px 0;color:var(--muted);font-size:12px;line-height:1.45;text-align:center}
-    .confirm{width:100%;border:0;border-radius:15px;padding:15px 14px;background:linear-gradient(135deg,var(--cyan),#3975ed);color:#fff;font:900 16px Arial;box-shadow:0 10px 22px rgba(38,126,218,.25);cursor:pointer}
-    .confirm:disabled{background:#d7dee8;color:#8c99aa;box-shadow:none;cursor:not-allowed}
-    .success{display:none;margin:4px 16px 20px;padding:22px 15px;border:2px solid var(--green);border-radius:18px;background:#edfff7;text-align:center;color:#087653}
-    .success.show{display:block}
-    .success .check{font-size:42px}.success h2{margin:5px 0;font-size:23px}.success p{margin:5px 0;color:#4c7568;font-size:13px}
-    .success strong{display:block;margin-top:12px;color:var(--navy);font-size:20px}
+    .hint{margin:2px 2px 0;padding:14px;border:2px solid #f5c842;border-radius:15px;background:#fff9df;color:#694f00;font-size:13px;font-weight:700;line-height:1.5;text-align:center}
     .footer{padding:14px 18px;background:#14243f;color:#dbeafe;text-align:center;font-size:11px}
     .footer b{color:#fff}
     @media(max-width:370px){.hero{padding-left:14px;padding-right:14px}.steps{padding-left:10px;padding-right:10px}.task{grid-template-columns:45px minmax(0,1fr) auto;padding:10px}.task .icon{width:43px;height:43px}.task b{font-size:14px}.status{font-size:9px}}
@@ -59,15 +53,7 @@
       <a class="task tiktok" data-task="tiktok" href="https://www.tiktok.com/@vtcomofficial" target="_blank" rel="noopener">
         <span class="icon">♪</span><span><b>Follow TikTok VTcom</b><small>@vtcomofficial</small></span><i class="status">CHƯA XONG</i>
       </a>
-      <p class="hint">Sau khi mở đủ 3 kênh, nút xác nhận bên dưới sẽ hoạt động.</p>
-      <button class="confirm" id="confirmBtn" disabled>TÔI ĐÃ HOÀN THÀNH (0/3)</button>
-    </section>
-
-    <section class="success" id="success">
-      <div class="check">✅</div>
-      <h2>ĐÃ HOÀN THÀNH!</h2>
-      <p>Hãy đưa màn hình này cho nhân viên VTCOM để nhận quà.</p>
-      <strong id="completedTime"></strong>
+      <p class="hint">Sau khi Follow Facebook, Quan tâm Zalo OA và Follow TikTok, vui lòng mang điện thoại đến booth VTCOM. Nhân viên sẽ kiểm tra trực tiếp trước khi trao quà.</p>
     </section>
     <footer class="footer"><b>VTCOM</b> · Công nghệ trong tầm tay bạn!</footer>
   </main>
@@ -76,9 +62,6 @@
     (() => {
       const KEY='vtcom_follow_event_v1';
       const tasks=[...document.querySelectorAll('.task')];
-      const button=document.getElementById('confirmBtn');
-      const list=document.getElementById('taskList');
-      const success=document.getElementById('success');
       let state={};
       try{state=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
 
@@ -89,21 +72,8 @@
           item.classList.toggle('done',done);
           item.querySelector('.status').textContent=done?'ĐÃ MỞ ✓':'CHƯA XONG';
         });
-        const count=tasks.filter(item=>state[item.dataset.task]).length;
-        button.disabled=count<3;
-        button.textContent=count<3?`TÔI ĐÃ HOÀN THÀNH (${count}/3)`:'XÁC NHẬN HOÀN THÀNH';
-        if(state.completed){
-          list.style.display='none';
-          success.classList.add('show');
-          document.getElementById('completedTime').textContent='Xác nhận lúc '+new Date(state.completed).toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'});
-        }
       }
       tasks.forEach(item=>item.addEventListener('click',()=>{state[item.dataset.task]=Date.now();save();render()}));
-      button.addEventListener('click',()=>{
-        if(tasks.every(item=>state[item.dataset.task])){
-          state.completed=Date.now();save();render();
-        }
-      });
       render();
     })();
   </script>
